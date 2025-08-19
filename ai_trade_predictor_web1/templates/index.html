@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Trade Predictor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        h1 {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        form {
+            margin-top: 30px;
+            animation: slideIn 1.5s ease-in-out;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background-color: #1e7e34;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes predictionPop {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #ffc107;
+            animation: predictionPop 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted playsinline id="video-background">
+        <source src="https://cdn.pixabay.com/vimeo/769640092/trading-chart-138130.mp4?width=640&hash=0b7f7d97ae5e6caa5bcf8ac63dc3cf44c13c2c7b" type="video/mp4">
+    </video>
+
+    <h1>AI Financial Trade Predictor</h1>
+    <form method="post">
+        <label for="date">Enter Date (YYYY-MM-DD):</label>
+        <input type="text" id="date" name="date" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <h2>Prediction: {{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>
